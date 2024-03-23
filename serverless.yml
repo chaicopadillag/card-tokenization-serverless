@@ -1,0 +1,51 @@
+service: card-tokenization
+frameworkVersion: "3"
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_PORT: ${env:DB_PORT}
+    DB_USERNAME: ${env:DB_USERNAME}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_NAME: ${env:DB_NAME}
+    REDIS_URI: ${env:REDIS_URI}
+
+functions:
+  migrate:
+    handler: src/handlers/migrateHandler.migrateTables
+    events:
+      - httpApi:
+          path: /migration
+          method: post
+  tokenizer-card:
+    handler: src/handlers/tokenizerCardHandler.createTokenHandler
+    events:
+      - httpApi:
+          path: /tokens
+          method: post
+  card:
+    handler: src/handlers/cardHandler.getCardHandler
+    events:
+      - httpApi:
+          path: /card
+          method: get
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000 # Puerto HTTP para el servidor local
+    lambdaPort: 3002 # Puerto para invocar funciones Lambda localmente
+    pattern: "src/**/*.ts"
+    ignore: [.build, "build", "node_modules", ".serverless"]
+
+  esbuild:
+    bundle: true
+    minify: true

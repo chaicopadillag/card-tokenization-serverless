@@ -1,0 +1,35 @@
+{
+    "collectCoverageFrom": [
+        "**/*.(t|j)s"
+    ],
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts"
+    ],
+    "rootDir": "./src",
+    "testRegex": ".test.ts",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coveragePathIgnorePatterns": [
+        "src/database/*",
+        "src/services/index.ts",
+        "src/handlers/migrateHandler.ts",
+        "src/models/card.ts",
+        "src/interfaces/*",
+        "src/utils/constants/*",
+        "src/utils/interfaces/*",
+        "src/utils/index.ts"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+        "clover",
+        "json",
+        "lcov",
+        "text",
+        "text-summary"
+    ],
+    "testTimeout": 60000,
+    "coverageDirectory": "../coverage"
+}
