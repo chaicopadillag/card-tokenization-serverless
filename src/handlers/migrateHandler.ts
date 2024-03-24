@@ -1,8 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import sequelize from 'database/sequelizeConfig';
-import Card from 'models/card';
-import { HttpStatus } from 'utils/constants';
-
+import sequelize from '../database/sequelizeConfig';
+import Card from '../models/card';
+import { HttpStatus } from '../utils/constants/httpStatus';
 export const migrateTables: APIGatewayProxyHandler = async () => {
   try {
     // Nos conectamos en la DB

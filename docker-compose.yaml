@@ -4,8 +4,6 @@ services:
   database:
     container_name: postgres-local
     image: postgres:bullseye
-    # volumes:
-    #   - ./postgres-db:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
@@ -21,8 +19,6 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-    # volumes:
-    #   - ./pg-admin:/var/lib/pgadmin
   
   redis:
     container_name: redis-local
@@ -40,9 +36,4 @@ services:
 
 
 networks:
-  card-tokenizer-local:
-    
-# volumes:
-#   pg-db-local:
-#     external: true
-   
+  card-tokenizer-local:  

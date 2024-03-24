@@ -2,11 +2,11 @@ import { Options, Sequelize } from 'sequelize';
 
 const options: Options = {
   dialect: 'postgres',
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT),
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: process.env.POSTGRESQL_HOST,
+  port: Number(process.env.POSTGRESQL_PORT),
+  username: process.env.POSTGRESQL_USERNAME,
+  password: process.env.POSTGRESQL_PASSWORD,
+  database: process.env.POSTGRESQL_DB_NAME,
 };
 
 const sequelize = new Sequelize(options);
